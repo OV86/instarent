@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+
+<div class="container add-edit-forms">
+	<div class="row">
+		<h1 class="form-headers">Search a car by date range</h1>
+		<form action="/cars/search" method="get">
+			<div class="form-group">
+				<input class="form-control" type="date" name="dateFrom" placeholder="Start date" required="yes">
+			</div>
+		  	<div class="form-group">
+				<input class="form-control" type="date" name="dateTo" placeholder="End date" required="yes">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-primary btn-block">Search cars</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<% include ../partials/footer %>

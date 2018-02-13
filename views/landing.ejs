@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instarent</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/vendors/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/vendors/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/vendors/css/grid.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+  </head>
+    <body>
+    <header>
+      <nav>
+        <div class="row">
+<!--           <img src="resources/css/img/logo-white.png" alt="Omnifood logo" class="logo"> -->
+          <ul class="main-nav">
+<!--             <li><a href="#">Rent a car</a></li>
+            <li><a href="#">Create an ad</a></li> -->
+            <!-- <li><a href="#">How it works</a></li> -->
+            <% if(!currentUser) { %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
+            <% } else { %>
+              <li><a href="#">Signed In As: <%= currentUser.username %></a></li>
+              <li><a href="/logout">Logout</a></li> 
+            <% } %>
+          </ul>
+        </div>
+      </nav>
+      <div class="hero-text-box">
+        <h1>Search for rental cars.<br>Or let your car earn money.</h1>
+        <a class="btn btn-full" href="/cars/">Search for cars</a>
+        <a class="btn btn-ghost" href="/cars/new">Create your listing</a>
+      </div>
+    </header>
+    
+  </body>
+</html>
+
+<% include partials/footer %>

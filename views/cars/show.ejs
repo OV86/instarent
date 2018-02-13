@@ -1,0 +1,75 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">Instarent Rent-A-Car</p>
+      <div class="list-group">
+        <li class="list-group-item">Manufacturer: <%= car.make %></li>
+        <li class="list-group-item">Model: <%= car.model %></li>
+        <li class="list-group-item">Year of production: <%= car.year %></li>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= car.image %>">
+        <div class="caption-full">
+            <h4 class="pull-right">$<%= car.price %>/day</h4>
+            <h4><a><%= car.make %> <%= car.model %>, <%= car.year %></a></h1>
+            <p><%= car.description %></p>
+            <p>                    
+              <em>Rental ad created by <%= car.author.username %></em>
+            </p>
+            <div class="modify-car">
+              <% if(currentUser && car.author.id.equals(currentUser._id)) { %>
+                <a class="btn btn-xs btn-warning" href="/cars/<%= car._id %>/edit">Edit</a>
+                <form class="delete-form" action="/cars/<%= car._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-xs btn-danger">Delete</button>
+                </form>                     
+              <% } %>
+            </div>
+            <form action="/cars/<%= car._id %>/book" method="post">
+              <div class="form-group">
+                <input class="form-control" type="hidden" name="dateFrom" value=<%= dateFrom %>>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="hidden" name="dateTo" value=<%= dateTo %>>
+              </div>
+              <% if(!(currentUser && car.author.id.equals(currentUser._id))) { %>
+                <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block">Book</button>
+                </div>
+              <% } %>
+            </form>
+          </div>
+        </div>
+        <div class="well">
+          <div class="text-right">
+            <a class="btn btn-success" href="/cars/<%= car._id %>/comments/new">Add new comment</a>
+          </div>
+          <hr>
+          <% car.comments.forEach(function(comment) { %>
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  <strong><%= comment.author.username %></strong> commented:
+                </p>
+                <!-- <span class="pull-right">10 days ago</span> -->
+                <p>
+                    <%= comment.text %>
+                </p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                  <a class="btn btn-xs btn-warning" href="/cars/<%= car._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                  <form class="delete-form" action="/cars/<%= car._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-xs btn-danger" href="/cars/<%= car._id %>/comments/<%= comment._id %>">Delete</button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>
