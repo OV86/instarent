@@ -24,6 +24,7 @@ mongoose.connect("mongodb://ov86:Olmakse123@ds133558.mlab.com:33558/instarent", 
     useMongoClient: true
 });
 
+app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -56,6 +57,6 @@ app.use(carRoutes);
 app.use(indexRoutes);
 app.use(commentRoutes);
 
-app.listen(8080, '127.0.0.1', function() {
+app.listen(app.get('port'), function() {
     console.log("Instarent server started.");
 });
