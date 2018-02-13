@@ -16,9 +16,14 @@ var carRoutes = require("./routes/cars"),
     commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/instarent", {
-	useMongoClient: true
+// mongoose.connect("mongodb://localhost/instarent", {
+// 	useMongoClient: true
+// });
+
+mongoose.connect("mongodb://ov86:Olmakse123@ds133558.mlab.com:33558/instarent", {
+    useMongoClient: true
 });
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
